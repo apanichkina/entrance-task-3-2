@@ -1,10 +1,19 @@
+import * as fs from 'fs';
 import {Home} from './perseptron';
 
-interface Ia {
+interface IInput {
+  name: string;
 }
 
-const aa: Ia = 10;
 console.log('Hello');
 const Vikhino = new Home();
-Vikhino.setName('Oleg' + aa);
-console.log(Vikhino.getName());
+const inputdata = fs.readFileSync('./data/input.json', 'utf8');
+const input: IInput = JSON.parse(inputdata);
+
+Vikhino.setName(`Oleg love ${input.name}`);
+
+const result: IInput = {
+  name: Vikhino.getName(),
+};
+
+fs.writeFileSync('./data/output.json', JSON.stringify(result));

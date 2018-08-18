@@ -2,6 +2,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "typeRoots": [
+      "node_modules/@types",
       "src/typings"
     ],
     "target": "es2015",

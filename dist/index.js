@@ -95,13 +95,20 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _perseptron__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./perseptron */ "./src/perseptron.ts");
+/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! fs */ "fs");
+/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(fs__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _perseptron__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./perseptron */ "./src/perseptron.ts");
 
-const aa = 10;
+
 console.log('Hello');
-const Vikhino = new _perseptron__WEBPACK_IMPORTED_MODULE_0__["Home"]();
-Vikhino.setName('Oleg' + aa);
-console.log(Vikhino.getName());
+const Vikhino = new _perseptron__WEBPACK_IMPORTED_MODULE_1__["Home"]();
+const inputdata = fs__WEBPACK_IMPORTED_MODULE_0__["readFileSync"]('./data/input.json', 'utf8');
+const input = JSON.parse(inputdata);
+Vikhino.setName(`Oleg love ${input.name}`);
+const result = {
+    name: Vikhino.getName(),
+};
+fs__WEBPACK_IMPORTED_MODULE_0__["writeFileSync"]('./data/output.json', JSON.stringify(result));
 
 
 /***/ }),
@@ -130,6 +137,17 @@ class Home {
 }
 
 
+
+/***/ }),
+
+/***/ "fs":
+/*!*********************!*\
+  !*** external "fs" ***!
+  \*********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("fs");
 
 /***/ })
 
