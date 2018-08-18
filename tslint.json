@@ -1,0 +1,21 @@
+{
+  "extends": ["tslint:latest"],
+  "rules": {
+    "quotemark": [true, "single"],
+    "ordered-imports": false,
+    "trailing-comma": [true, {"multiline": "always", "singleline": "never"}],
+    "no-console": false,
+    "object-literal-sort-keys": false,
+    "member-ordering": false,
+    "no-submodule-imports": false,
+    "no-shadowed-variable": false,
+    "no-empty-interface": false,
+    "no-object-literal-type-assertion": false,
+    "semicolon": [true, "always", "ignore-bound-class-methods"],
+    "only-arrow-functions": [true, "allow-declarations", "allow-named-functions"],
+    "no-debugger": false,
+    "prefer-conditional-expression": false,
+    "object-literal-key-quotes": false,
+    "no-implicit-dependencies": [true, "dev"]
+  }
+}

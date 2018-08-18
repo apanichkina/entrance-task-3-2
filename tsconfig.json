@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "typeRoots": [
+      "src/typings"
+    ],
+    "target": "es2015",
+    "module": "es2015",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "removeComments": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": false,
+    "lib": [ "dom", "es6", "dom.iterable" ,"scripthost", "es2017" ],
+    "pretty": true
+  },
+  "exclude": [
+    "tests"
+  ]
+}
