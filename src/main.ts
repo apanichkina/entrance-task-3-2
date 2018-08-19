@@ -1,19 +1,11 @@
 import * as fs from 'fs';
-import {Home} from './perseptron';
+import {IInput} from './interfaces/input';
+import {LogicManager} from './classes/logic';
 
-interface IInput {
-  name: string;
-}
+const input = fs.readFileSync('./data/input.json', 'utf8');
+const inputData: IInput = JSON.parse(input);
 
-console.log('Hello');
-const Vikhino = new Home();
-const inputdata = fs.readFileSync('./data/input.json', 'utf8');
-const input: IInput = JSON.parse(inputdata);
-
-Vikhino.setName(`Oleg love ${input.name}`);
-
-const result: IInput = {
-  name: Vikhino.getName(),
-};
+const manager: LogicManager = new LogicManager();
+const result = manager.Evaluate(inputData);
 
 fs.writeFileSync('./data/output.json', JSON.stringify(result));
