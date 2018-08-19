@@ -6,14 +6,14 @@ class Device {
   private readonly device: IDevice;
   private readonly hoursCanWork: IDeviceHourResult[];
 
-  constructor(device: IDevice, maxHour: number, hourRates: Map<number, number>, converter: HourConverter) {
+  constructor(device: IDevice, hourRates: Map<number, number>, converter: HourConverter) {
     this.device = device;
     this.hoursCanWork = [];
 
     const modeName = device.mode || '';
     let mode: IHourPeriod;
     if (modeName === '') {
-      mode = {from: 0, to: maxHour};
+      mode = {from: 0, to: converter.GetMaxHour()};
     } else {
       mode = modes.get(modeName);
     }

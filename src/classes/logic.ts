@@ -11,13 +11,11 @@ modes.set('day', {from: 7, to: 21});
 class LogicManager {
   private data: IInput;
   private readonly converter: HourConverter;
-  private readonly hoursPeriod: number;
   private devices: Device[];
   private hourRates: Map<number, number>;
 
   constructor(hours?: number) {
-    this.hoursPeriod = hours || 24;
-    this.converter = new HourConverter(this.hoursPeriod);
+    this.converter = new HourConverter(hours || 24);
   }
 
   private GetBestResult(s: State, devices: Device[]): ILocalResult {
@@ -78,11 +76,11 @@ class LogicManager {
 
     this.devices = [];
     for (const device of data.devices) {
-      this.devices.push(new Device(device, this.hoursPeriod, this.hourRates, this.converter));
+      this.devices.push(new Device(device, this.hourRates, this.converter));
     }
 
     const result = this.GetBestResult(
-      new State(this.hoursPeriod, this.data.maxPower, this.converter),
+      new State(this.data.maxPower, this.converter),
       this.devices,
     );
     if (result === undefined) {

@@ -19,6 +19,10 @@ class HourConverter {
       (from <= hour + this.maxHour && hour + this.maxHour < to);
   }
 
+  public GetMaxHour(): number {
+    return this.maxHour;
+  }
+
   public *generator(from: number, to: number) {
     if (to < from) {
       to += this.maxHour;

@@ -5,17 +5,17 @@ class State {
   private readonly hours: number[];
   private readonly hourConverter: HourConverter;
 
-  constructor(hoursNum: number, availablePower: number, converter: HourConverter) {
+  constructor(availablePower: number, converter: HourConverter) {
     this.hourConverter = converter;
     this.hours = [];
 
-    for (let i: number = 0; i < hoursNum; i++) {
+    for (let i: number = 0; i < converter.GetMaxHour(); i++) {
       this.hours[i] = availablePower;
     }
   }
 
   public Copy(): State {
-    const s = new State(this.hours.length, 0, this.hourConverter);
+    const s = new State(0, this.hourConverter);
     for (let i: number = 0; i < this.hours.length; i++) {
       s.hours[i] = this.hours[i];
     }
