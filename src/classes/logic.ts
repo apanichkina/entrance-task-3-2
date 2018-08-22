@@ -87,16 +87,38 @@ class LogicManager {
       throw Error('no best result');
     }
 
-    console.log(result);
-
-    return {
-      schedule: new Map(),
+    const output = {
+      schedule: Object.create(null),
       consumedEnergy: {
-        value: result.value,
-        devices: new Map(),
+        value: round(result.value),
+        devices: Object.create(null),
       },
     };
+
+    for (let i: number = 0; i < result.path.length; i++) {
+      const hour = result.path[i];
+      const device = this.devices[i].getDeviceInfo();
+      const gen = this.converter.generator(hour, hour + device.duration);
+
+      let deviceresult = 0;
+
+      for (const workHour of gen) {
+        const schedule = output.schedule[(workHour)] || [];
+        schedule.push(device.id);
+        output.schedule[workHour] = schedule;
+
+        deviceresult += this.hourRates.get(workHour) * device.power / 1000;
+      }
+
+      output.consumedEnergy.devices[device.id] = round(deviceresult); // 4 nums after comma
+    }
+
+    return output;
   }
+}
+
+function round(input: number): number {
+  return Math.round(input * 10000) / 10000;
 }
 
 export {modes, LogicManager};
