@@ -1,4 +1,5 @@
 import {LogicManager} from './logic';
+import {Error} from 'tslint/lib/error';
 
 test('evaluate_common', () => {
   const manager = new LogicManager(3);
@@ -82,4 +83,24 @@ test('evaluate_night', () => {
       rates,
     },
   ).consumedEnergy.value).toBe(3); // can't set device on day period
+});
+
+test('evaluate_negative', () => {
+  const manager = new LogicManager(24);
+
+  const rates = [
+    {from: 0, to: 24, value: 3},
+  ];
+
+  expect(() => {
+    manager.Evaluate(
+      {
+        devices: [
+          {id: '', name: '', mode: 'night', power: 1000, duration: 1},
+        ],
+        maxPower: 900,
+        rates,
+      },
+    );
+  }).toThrow(Error); // no best result
 });
